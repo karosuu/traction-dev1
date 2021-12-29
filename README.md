@@ -1,7 +1,7 @@
 # README
 
 ## About The Project
-Automated test MWE web project
+Automated test Tractoion tool dev-1 web project
 
 ## Getting Started
 
