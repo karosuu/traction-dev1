@@ -1,12 +1,13 @@
 
+import { type } from 'os';
 import { Main } from '../../page-objects/components/main'
 
 describe('Login and run Meeting', () => {
 
+    const main = new Main()
 
 
     beforeEach(function () {
-        const main = new Main()
 
         cy.viewport(1440, 1080)
         cy.visit('https://dev-1.traction.tools/')
@@ -33,8 +34,8 @@ describe('Login and run Meeting', () => {
 
     it('Select first meeting and load all the pages', () => {
 
-        cy.get('#header-tab-l10').click()
-        cy.get('tr:nth-of-type(1) > .hidden-xs.l10-row-cell.view-meeting-cell > .go-indicator.label.label-default').click()
+        main.menuMeeting().click()
+        main.gotoMeeting().click()
         cy.get('#l10-meeting-startbutton').click().wait(3000)
         cy.get('.c-list-item.page-item.pagetype-ids > a').click().wait(3000)
         cy.get('.c-list-item.page-item.pagetype-rocks > a').click().wait(3000)
@@ -42,7 +43,8 @@ describe('Login and run Meeting', () => {
         cy.get('.c-list-item.page-item.pagetype-todo > a').click().wait(3000)
         cy.get('.c-list-item.page-item.pagetype-segue > a').click().wait(2000)
         cy.get('.c-list-item.page-item.pagetype-conclude > a').click()
-        cy.get('#conclude_meeting_button').click()
+        main.concludeBtn().click()
+        cy.get('.c-stats-title').contains('ISSUES SOLVED')
     })
 
 });
