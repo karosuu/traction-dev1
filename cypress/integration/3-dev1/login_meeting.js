@@ -3,9 +3,7 @@ import { type } from 'os';
 import { Main } from '../../page-objects/components/main'
 
 describe('Login and run Meeting', () => {
-
     const main = new Main()
-
 
     beforeEach(function () {
 
@@ -30,11 +28,9 @@ describe('Login and run Meeting', () => {
         cy.url().should('include', '/Dashboard')
     })
 
-
-
     it('Select first meeting and load all the pages', () => {
 
-        main.menuMeeting().click()
+        main.navMeeting().click()
         main.gotoMeeting().click()
         cy.get('#l10-meeting-startbutton').click().wait(3000)
         cy.get('.c-list-item.page-item.pagetype-ids > a').click().wait(3000)
