@@ -6,7 +6,7 @@ describe('Login and run Meeting', () => {
     beforeEach(function () {
 
         cy.viewport(1440, 1080)
-        cy.visit('https://dev-1.traction.tools/')
+        cy.visit('https://traction.tools/Account/Login')
         cy.url().should('include', '/Account/Login')
 
         Cypress.on('uncaught:exception', (err, runnable, promise) => {
