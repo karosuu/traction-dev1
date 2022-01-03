@@ -1,5 +1,3 @@
-
-import { type } from 'os';
 import { Main } from '../../page-objects/components/main'
 
 describe('Login and run Meeting', () => {
@@ -31,8 +29,8 @@ describe('Login and run Meeting', () => {
     it('Select first meeting and load all the pages', () => {
 
         main.navMeeting().click()
-        main.gotoMeeting().click()
-        cy.get('#l10-meeting-startbutton').click().wait(3000)
+        main.gotoMeetingBtn().click()
+        main.startMeetingBtn().click().wait(3000)
         cy.get('.c-list-item.page-item.pagetype-ids > a').click().wait(3000)
         cy.get('.c-list-item.page-item.pagetype-rocks > a').click().wait(3000)
         cy.get('.c-list-item.page-item.pagetype-headlines > a').click().wait(3000)
