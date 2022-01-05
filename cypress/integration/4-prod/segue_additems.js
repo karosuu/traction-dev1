@@ -1,5 +1,5 @@
 import { Main } from '../../page-objects/components/main'
-import {testInputID}from '../../page-objects/components/input_utillities'
+import { testInputID } from '../../page-objects/components/input_utillities'
 
 describe('Login and run Meeting', () => {
     const main = new Main()
@@ -32,18 +32,23 @@ describe('Login and run Meeting', () => {
         main.navMeeting().click()
         main.gotoMeetingBtn().click().wait(2000)
         main.startMeetingBtn().click().wait(2000)
-        cy.get('.c-list-item.page-item.pagetype-segue > a').click().wait(3000)
+        cy.get('.c-list-item.page-item.pagetype-segue > a').click().wait(2000)
         cy.get('.collapse.navbar-collapse.navbar-right .btn.btn-default.btn-sm.issuesModal > .btn-text.btn-text-create_mtngitem').click().wait(2000)
-
-        cy.get('#modalForm .modal-body .input-control#Message').type(testInputID('Issue test cy ', '1234567890' ))
-      
         
-        //cy.get('#modalCancel').click()
+        //Create new issue
+        cy.get('#modalForm .modal-body .input-control#Message').type(testInputID('Issue test cy ', '1234567890'))
+        //cy.get('#modalOk').click()
+        cy.get('#modalCancel').click().wait(2000)
+
+        //Create new To-Do
+        cy.get('.collapse.navbar-collapse.navbar-right .btn.btn-default.btn-sm.todoModal').click().wait(1000)
+        cy.get('#modalForm .modal-body .input-control#Message').type(testInputID('To-Do test cy ', '1234567890'))
+        cy.get('#modalCancel').click()
 
 
-      // cy.get('.c-list-item.page-item.pagetype-conclude > a').click()
-       // main.concludeBtn().click()
-       // cy.get('.c-stats-title').contains('ISSUES SOLVED')
+        cy.get('.c-list-item.page-item.pagetype-conclude > a').click()
+        main.concludeBtn().click().wait(2000)
+        cy.get('.c-stats-title').contains('ISSUES SOLVED')
     })
 
 });
