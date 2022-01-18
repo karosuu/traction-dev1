@@ -9,16 +9,11 @@ describe('Login and run Meeting', () => {
         cy.visit('https://traction.tools/Account/Login')
         cy.url().should('include', '/Account/Login')
 
-        Cypress.on('uncaught:exception', (err, runnable, promise) => {
-            // when the exception originated from an unhandled promise
-            // rejection, the promise is provided as a third argument
-            // you can turn off failing the test in this case
-            if (promise) {
-                // returning false here prevents Cypress from
-                // failing the test
-                return false
-            }
-        })
+        Cypress.on('uncaught:exception', (err, runnable) => {
+            // returning false here prevents Cypress from
+            // failing the test
+            return false
+        })        
         main.loginInput().type('carlos.cuadra@smbssolutions.com')
         main.passInput().type('Carlos420#$')
 

@@ -1,3 +1,5 @@
+import { replaceSubstitutionTransformer } from "common-tags"
+
 export class Main {
 
     //Getstarted page objects
@@ -35,8 +37,13 @@ export class Main {
     rockPage() { return cy.get('.c-list-item.page-item.pagetype-rocks > a') }
     headlinePage() { return cy.get('.c-list-item.page-item.pagetype-headlines > a') }
     todoPage() { return cy.get('.c-list-item.page-item.pagetype-todo > a') }
-    saguePage() { return  cy.get('.c-list-item.page-item.pagetype-segue > a') }
-    concludePage() { return  cy.get('.c-list-item.page-item.pagetype-conclude > a') }
+    saguePage() { return cy.get('.c-list-item.page-item.pagetype-segue > a') }
+    concludePage() { return cy.get('.c-list-item.page-item.pagetype-conclude > a') }
 
+    //Navigation bar modal objects
+    navModalTitle() { return cy.get('#modalForm .modal-body .input-control#Message') }
+    navBarCreateissue() { return cy.get('.collapse.navbar-collapse.navbar-right .btn.btn-default.btn-sm.todoModal') }
+    modalSaveBtn () { return  cy.get('#modalOk') }
+    modalCancelBtn () { return  cy.get('#modalCancel') }
 };
 
