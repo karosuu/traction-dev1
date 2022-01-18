@@ -28,8 +28,18 @@ describe('Login and run Meeting', () => {
     });
 
     it('Navigation bar pages', () => {
+        main.navMeeting().click()
+        main.gotoMeetingBtn().click()
+        main.startMeetingBtn().click().wait(10000)
+        main.issuesPage().click().wait(10000)
+        main.rockPage().click().wait(10000)
+        main.headlinePage().click().wait(10000)
+        main.todoPage().click().wait(10000)
+        main.saguePage().click().wait(2000)
+        main.concludePage().click()
+        main.concludeBtn().click()
+        cy.get('.c-stats-title').contains('ISSUES SOLVED')
 
-       
     })
 
 });

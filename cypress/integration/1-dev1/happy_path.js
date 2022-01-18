@@ -9,7 +9,7 @@ describe('Register a new user and Organization', () => {
 
         cy.viewport(1440, 1080)
 
-        Cypress.on('uncaught:exception', (err, runnable, promise) => {
+       /* Cypress.on('uncaught:exception', (err, runnable, promise) => {
             // when the exception originated from an unhandled promise
             // rejection, the promise is provided as a third argument
             // you can turn off failing the test in this case
@@ -18,7 +18,7 @@ describe('Register a new user and Organization', () => {
                 // failing the test
                 return false
             }
-        })
+        })*/
     });
 
     it('Enter user details', () => {
@@ -30,12 +30,10 @@ describe('Register a new user and Organization', () => {
         main.getStartLname().type(testInputID('User '))
         main.getStartEmail().type(emailInputID('carlos.cuadra+', '@smbssolutions.com'))
         main.getStartPassword().type('Testuser12345#')
-        main.getStartCompany().type(testInputID('Test Carlos: New Company '))
-        main.getStartCoach().click()
-        main.getStartReferral().select('I Found You Online').should('have.value', 'online')
+        main.getStartCompany().type(testInputID('TEST-QA Account '))
+        main.getStartNoCoach().click()
+        main.getStartHear().select('I Found You Online').should('have.value', 'online')
         main.getStartSignUpBtn().click()
-
-
     })
     it('Approve consent', () => {
         cy.url().should('include', '/Account/Consent')
@@ -43,8 +41,8 @@ describe('Register a new user and Organization', () => {
         //main.consentNoBtn().click()
 
     })
-    it('Close modal', () => {
+    it('Assert Dashboard and Close modal', () => {
         cy.url().should('include', '/Dashboard')
-        cy.get('#pendo-close-guide-4657e67b').click()
-    })
+        main.dashCloseModal().click()
+    })  
 });
