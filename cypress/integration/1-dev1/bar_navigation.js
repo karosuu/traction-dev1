@@ -5,13 +5,13 @@ import { navBarOb } from '../../page-objects/components/navbar_objects'
 
 describe('Login & create items in Sague page', () => {
     const main = new Main()
-    const navBar = new navBarOb()
-    
+    const navBar =  new navBarOb()
+  
 
     beforeEach(function () {
 
         cy.viewport(1440, 1080)
-      
+
         Cypress.on('uncaught:exception', (err, runnable) => {
             // returning false here prevents Cypress from
             // failing the test
@@ -26,7 +26,7 @@ describe('Login & create items in Sague page', () => {
         main.passInput().type('Carlos420#$')
         main.loginButton().click()
     })
-    it('Navigate Pages', () => {
+    it('Navigation Bar Pages', () => {
         cy.url().should('include', '/Dashboard')
         navBar.navMeeting().click().wait(1000)
         cy.url().should('include', '/L10')
@@ -34,7 +34,9 @@ describe('Login & create items in Sague page', () => {
         cy.url().should('include', '/Documents')
         navBar.navVtoPage().click()
         cy.url().should('include', '/VTO')
-
-      // cy.get('.CustomNavbar-link dropdown-toggle').find('li').first().should('have.text', 'Accountability Chart')
+        navBar.navPeoplePage().contains('People').trigger('mouseover').click()
+        navBar.navAcPage().contains('Accountability Chart')
+        .should('have.attr', 'href', '/Accountability/Chart').click()
+        cy.url().should('include', '/Accountability').wait(1500)
     })
 });
