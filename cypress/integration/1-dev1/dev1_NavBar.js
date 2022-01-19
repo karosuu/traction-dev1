@@ -1,8 +1,12 @@
-import { Main } from '../../page-objects/components/main'
+import { Main } from '../../page-objects/components/main_objects'
 import { testInputID } from '../../page-objects/components/input_utillities'
+import { navBarOb } from '../../page-objects/components/navbar_objects'
+import { meetingOb } from '../../page-objects/components/meeting_objects'
 
 describe('Login and run Meeting', () => {
     const main = new Main()
+    const navBar = new navBarOb()
+    const meeting = new  meetingOb()
 
     beforeEach(function () {
 
@@ -17,23 +21,23 @@ describe('Login and run Meeting', () => {
         })
 
         main.loginInput().type('carlos.cuadra@smbssolutions.com')
-        main.passInput().type('Carlos420#$')
+        main.passInput().type('Carlos4200#$')
 
         main.loginButton().click()
         cy.url().should('include', '/Dashboard')
     });
     
     it('Navigation bar pages', () => {
-        main.navMeeting().click()
-        main.gotoMeetingBtn().click()
-        main.startMeetingBtn().click().wait(10000)
-        main.issuesPage().click().wait(10000)
-        main.rockPage().click().wait(10000)
-        main.headlinePage().click().wait(10000)
-        main.todoPage().click().wait(10000)
-        main.saguePage().click().wait(2000)
-        main.concludePage().click()
-        main.concludeBtn().click()
+        navBar.navMeeting().click()
+        meeting.gotoMeetingBtn().click()
+        meeting.startMeetingBtn().click().wait(10000)
+        meeting.issuesPage().click().wait(10000)
+        meeting.rockPage().click().wait(10000)
+        meeting.headlinePage().click().wait(10000)
+        meeting.todoPage().click().wait(10000)
+        meeting.saguePage().click().wait(2000)
+        meeting.concludePage().click()
+        meeting.concludeBtn().click()
         cy.get('.c-stats-title').contains('ISSUES SOLVED')
 
     })

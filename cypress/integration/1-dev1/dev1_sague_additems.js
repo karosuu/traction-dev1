@@ -1,22 +1,18 @@
-import { Main } from '../../page-objects/components/main'
+import { Main } from '../../page-objects/components/main_objects'
 import { testInputID } from '../../page-objects/components/input_utillities'
+import { meetingOb } from '../../page-objects/components/meeting_objects'
+import { navBarOb } from '../../page-objects/components/navbar_objects'
+
 
 describe('Login & create items in Sague page', () => {
     const main = new Main()
+    const navBar = new navBarOb()
+    const meeting = new  meetingOb()
 
     beforeEach(function () {
 
         cy.viewport(1440, 1080)
-        Cypress.on('uncaught:exception', (err, runnable, promise) => {
-            // when the exception originated from an unhandled promise
-            // rejection, the promise is provided as a third argument
-            // you can turn off failing the test in this case
-            if (promise) {
-                return false
-            }
-            // we still want to ensure there are no other unexpected
-            // errors, so we let them fail the test
-        })
+        
         Cypress.on('uncaught:exception', (err, runnable) => {
             // returning false here prevents Cypress from
             // failing the test
@@ -33,10 +29,10 @@ describe('Login & create items in Sague page', () => {
     })
     it('Run Meeting: Create a new issue & To-do', () => {
         cy.url().should('include', '/Dashboard')
-        main.navMeeting().click()
+        navBar.navMeeting().click()
         cy.get('h1').contains('Meetings')
-        main.gotoMeetingBtn().click().wait(2000)
-        main.startMeetingBtn().click().wait(2000)
+        meeting.gotoMeetingBtn().click().wait(2000)
+        meeting.startMeetingBtn().click().wait(2000)
         cy.get('.c-list-item.page-item.pagetype-segue > a').click().wait(3000)
         
         //Create new issue
@@ -46,11 +42,11 @@ describe('Login & create items in Sague page', () => {
         //cy.get('#modalCancel').click().wait(2000)
 
         //Create new To-Do
-        main.navBarCreateissue().click().wait(1000)
-        main.navModalTitle().type(testInputID('Automated To-Do '))
+        navBar.navBarCreateissue().click().wait(1000)
+        navBar.navModalTitle().type(testInputID('Automated To-Do '))
         main.modalSaveBtn().click()
         cy.get('.c-list-item.page-item.pagetype-conclude > a').click()
-        main.concludeBtn().click().wait(2000)
+        meeting.concludeBtn().click().wait(2000)
         cy.get('.c-stats-title').contains('ISSUES SOLVED')
     })
 });
