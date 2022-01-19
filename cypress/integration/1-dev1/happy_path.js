@@ -1,13 +1,15 @@
 import { Main } from '../../page-objects/components/main_objects'
 import { testInputID } from '../../page-objects/components/input_utillities'
 import { shortInputID } from '../../page-objects/components/input_utillities'
-import { navBarOb} from '../../page-objects/components/navbar_objects'
+import { navBarOb } from '../../page-objects/components/navbar_objects'
+
 
 
 
 describe('Register a new user and Organization', () => {
     const main = new Main()
-    const navBar = new navBarOb() 
+    const navBar = new navBarOb()
+
 
     beforeEach(function () {
         cy.viewport(1440, 1080)
@@ -29,21 +31,19 @@ describe('Register a new user and Organization', () => {
         main.getStartCompany().type(testInputID('TEST-QA Account '))
         main.getStartNoCoach().click()
         main.getStartHear().select('I Found You Online').should('have.value', 'online')
-        main.getStartSignUpBtn().click()     
+        main.getStartSignUpBtn().click()
     })
     it('Navigate Pages', () => {
         cy.url().should('include', '/Account/Consent')
-        main.consetOkBtn().click()
-        //main.consentNoBtn().click() 
-        cy.url().should('include', '/Dashboard')
-        main.dashCloseModal().click()
-        navBar.navMeeting().click().wait(1000)
+        main.consetOkBtn().click().wait(1500)
         cy.url().should('include', '/L10')
         navBar.navDocsPage().click().wait(1000)
         cy.url().should('include', '/Documents')
         navBar.navVtoPage().click()
         cy.url().should('include', '/VTO')
+        cy.get('#header-tab-ac').click().wait(2000)
+        cy.url().should('include', '/Accountability')
 
-        
+
     })
 });

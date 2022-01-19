@@ -6,6 +6,7 @@ export class navBarOb {
   navVtoPage() { return cy.get('#header-tab-vto') }
   navPeoplePage() { return cy.get ('#bs-example-navbar-collapse-1') }
   navAcPage() {return cy.get('#bs-example-navbar-collapse-1 .CustomNavbar-item .dropdown-menu ') }
+  navAcOnly() { return cy.get('#header-tab-ac') }
   navModalTitle() { return cy.get('#modalForm .modal-body .input-control#Message') }
   navBarCreateissue() { return cy.get('.collapse.navbar-collapse.navbar-right .btn.btn-default.btn-sm.todoModal') }
   
