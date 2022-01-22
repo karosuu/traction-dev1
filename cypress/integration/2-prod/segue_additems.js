@@ -10,15 +10,10 @@ describe('Login and run Meeting', () => {
         cy.visit('https://traction.tools/Account/Login')
         cy.url().should('include', '/Account/Login')
 
-        Cypress.on('uncaught:exception', (err, runnable, promise) => {
-            // when the exception originated from an unhandled promise
-            // rejection, the promise is provided as a third argument
-            // you can turn off failing the test in this case
-            if (promise) {
-                // returning false here prevents Cypress from
-                // failing the test
-                return false
-            }
+        Cypress.on('uncaught:exception', (err, runnable) => {
+            // returning false here prevents Cypress from
+            // failing the test
+            return false
         })
         main.loginInput().type('carlos.cuadra@smbssolutions.com')
         main.passInput().type('Carlos420#$')
@@ -34,7 +29,7 @@ describe('Login and run Meeting', () => {
         main.startMeetingBtn().click().wait(2000)
         cy.get('.c-list-item.page-item.pagetype-segue > a').click().wait(2000)
         cy.get('.collapse.navbar-collapse.navbar-right .btn.btn-default.btn-sm.issuesModal > .btn-text.btn-text-create_mtngitem').click().wait(2000)
-        
+
         //Create new issue
         cy.get('#modalForm .modal-body .input-control#Message').type(testInputID('Issue test cy ', '1234567890'))
         //cy.get('#modalOk').click()

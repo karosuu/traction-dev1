@@ -9,16 +9,11 @@ describe('Login and run Meeting', () => {
         cy.visit('https://traction.tools/Account/Login')
         cy.url().should('include', '/Account/Login')
 
-        Cypress.on('uncaught:exception', (err, runnable, promise) => {
-            // when the exception originated from an unhandled promise
-            // rejection, the promise is provided as a third argument
-            // you can turn off failing the test in this case
-            if (promise) {
-                // returning false here prevents Cypress from
-                // failing the test
-                return false
-            }
-        })
+        Cypress.on('uncaught:exception', (err, runnable) => {
+            // returning false here prevents Cypress from
+            // failing the test
+            return false
+        })        
         main.loginInput().type('carlos.cuadra@smbssolutions.com')
         main.passInput().type('Carlos420#$')
 
@@ -31,12 +26,12 @@ describe('Login and run Meeting', () => {
         main.navMeeting().click()
         main.gotoMeetingBtn().click()
         main.startMeetingBtn().click().wait(10000)
-        cy.get('.c-list-item.page-item.pagetype-ids > a').click().wait(10000)
-        cy.get('.c-list-item.page-item.pagetype-rocks > a').click().wait(10000)
-        cy.get('.c-list-item.page-item.pagetype-headlines > a').click().wait(10000)
-        cy.get('.c-list-item.page-item.pagetype-todo > a').click().wait(10000)
-        cy.get('.c-list-item.page-item.pagetype-segue > a').click().wait(2000)
-        cy.get('.c-list-item.page-item.pagetype-conclude > a').click()
+        main.issuesPage().click().wait(10000)
+        main.rockPage().click().wait(10000)
+        main.headlinePage().click().wait(10000)
+        main.todoPage().click().wait(10000)
+        main.saguePage().click().wait(2000)
+        main.concludePage().click()
         main.concludeBtn().click()
         cy.get('.c-stats-title').contains('ISSUES SOLVED')
     })
