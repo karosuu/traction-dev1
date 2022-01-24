@@ -39,6 +39,6 @@ describe('Login & create items in Sague page', () => {
         .should('have.attr', 'href', '/Accountability/Chart').click()
         cy.url().should('include', '/Accountability').wait(1500)
         navBar.navWorkspcPage().click().wait(1500)
-        cy.get(' .CustomNavbar #workspace-dropdown-list > li:not(.dropdown-heading):first-child').click()
+        cy.get('#workspace-dropdown-list > li:nth-child(2) a').click()
     })
 });

@@ -16,7 +16,7 @@ npm install
 
 Opens the Cypress Test Runner.
 ```sh
-npm run cypress:open
+npm cypress open
 ```
 
 Run all the test cases from your workspace on the Command-Line or terminal
