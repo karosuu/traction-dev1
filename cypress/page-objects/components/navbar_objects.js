@@ -1,6 +1,7 @@
 export class navBarOb {
   
   //Navigation bar objects
+  navWorkspcPage() { return cy.get('#header-tab-dropdown') }
   navMeeting() { return cy.get('#header-tab-l10') }
   navDocsPage() { return cy.get('#header-tab-docs') }
   navVtoPage() { return cy.get('#header-tab-vto') }
