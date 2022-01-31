@@ -5,8 +5,8 @@ import { navBarOb } from '../../page-objects/components/navbar_objects'
 
 describe('Login & create items in Sague page', () => {
     const main = new Main()
-    const navBar = new navBarOb()
-    const dev1 = cypress.env("env_dev1")
+    const navBar =  new navBarOb()
+  
 
     beforeEach(function () {
 
@@ -20,7 +20,7 @@ describe('Login & create items in Sague page', () => {
 
     })
     it('Login', () => {
-        cy.visit('dev1')
+        cy.visit('https://dev-1.traction.tools/')
         main.loginInput().type('carlos.cuadra+jane@smbssolutions.com')
         cy.url().should('include', '/Account/Login')
         main.passInput().type('Carlos420#$')
@@ -28,17 +28,12 @@ describe('Login & create items in Sague page', () => {
     })
     it('Navigation Bar Pages', () => {
         cy.url().should('include', '/Dashboard')
-        navBar.navMeeting().click().wait(1000)
-        cy.url().should('include', '/L10')
+        
         navBar.navDocsPage().click().wait(1000)
-        cy.url().should('include', '/Documents')
-        navBar.navVtoPage().click()
-        cy.url().should('include', '/VTO')
-        navBar.navPeoplePage().contains('People').trigger('mouseover').click()
-        navBar.navAcPage().contains('Accountability Chart')
-            .should('have.attr', 'href', '/Accountability/Chart').click()
-        cy.url().should('include', '/Accountability').wait(1500)
+       
         navBar.navWorkspcPage().click().wait(1500)
-        cy.get('#workspace-dropdown-list > li:nth-child(2) a').click()
+        cy.get('#workspace-dropdown-list .c-icon icon-tt-new add-workspace').click()
+       //cy.get('.dark-mode-logo').click()
     })
 });
+

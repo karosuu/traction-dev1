@@ -21,5 +21,5 @@ npm cypress open
 
 Run all the test cases from your workspace on the Command-Line or terminal
 ```sh
-npm run cypress:run
+npm cypress run
 ```
