@@ -41,7 +41,7 @@ describe('Register a new user and Organization', () => {
         cy.url().should('include', '/Documents')
         navBar.navVtoPage().click()
         cy.url().should('include', '/VTO')
-        cy.get('#header-tab-ac').click().wait(2000)
+        navBar.navAcOnly().click().wait(2000)
         cy.url().should('include', '/Accountability')
 
 

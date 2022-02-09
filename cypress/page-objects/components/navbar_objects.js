@@ -10,6 +10,6 @@ export class navBarOb {
   navAcOnly() { return cy.get('#header-tab-ac') }
   navModalTitle() { return cy.get('#modalForm .modal-body .input-control#Message') }
   navBarCreateissue() { return cy.get('.collapse.navbar-collapse.navbar-right .btn.btn-default.btn-sm.todoModal') }
-  
+  navttLogo() { return cy.get('.dark-mode-logo') }
 
 };
