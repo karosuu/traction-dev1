@@ -21,7 +21,7 @@ describe('Login & create items in Sague page', () => {
     })
     it('Login', () => {
         cy.visit('https://dev-1.traction.tools/')
-        main.loginInput().type('carlos.cuadra+jane@smbssolutions.com')
+        main.loginInput().type('carlos.cuadra+1983@smbssolutions.com')
         cy.url().should('include', '/Account/Login')
         main.passInput().type('Carlos420#$')
         main.loginButton().click()

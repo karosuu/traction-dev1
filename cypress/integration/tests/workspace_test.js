@@ -23,14 +23,14 @@ describe('Workspace menu', () => {
         cy.visit('https://dev-1.traction.tools/')
         main.loginInput().type('carlos.cuadra+1983@smbssolutions.com')
         cy.url().should('include', '/Account/Login')
-        main.passInput().type('Carlos4200#$')
+        main.passInput().type('Carlos420#$')
         main.loginButton().click()
     })
     it('workspace', () => {
-        cy.url().should('include', '/Dashboard')
+        cy.url().should('include', '/Dashboard').wait(500)
         cy.get('.icon-clock').trigger('mouseover')
         cy.get('.c-sidebar-nav.c-sidebar-nav--root > li:nth-of-type(3) > .c-sidebar-nav-link.nav-link-arrow').trigger('mouseover')
         .wait(1500)
-        cy.get('.li:nth-of-type(1) > .c-sidebar-nav-link.nav-link-arrow')
+        //cy.get('.li:nth-of-type(1) > .c-sidebar-nav-link.nav-link-arrow')
     })
 });
